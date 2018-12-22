@@ -54,7 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\UserLevelToStringConverter.cs" />
+    <Compile Include="Converters\ValueConverter.cs" />
     <Compile Include="Users\KPUser.cs" />
+    <Compile Include="Users\UserLevel.cs" />
     <Page Include="AddKeyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\UserImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
