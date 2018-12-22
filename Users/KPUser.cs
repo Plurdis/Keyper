@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Keyper.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -73,6 +75,24 @@ namespace Keyper.Users
             }
         }
 
+        public string _password;
+
+        public bool ContrastPassword(string password)
+        {
+            var passwordHashingConverter = new PasswordHashingConverter();
+
+            if (_password == passwordHashingConverter.Convert(password, null, null, null))
+                return true;
+
+            return false;
+        }
+
+        public void UpdatePassword(string password)
+        {
+            var passwordHashingConverter = new PasswordHashingConverter();
+
+            _password = passwordHashingConverter.Convert(password, null, null, null);
+        }
 
         UserLevel _userLevel;
 
@@ -90,7 +110,7 @@ namespace Keyper.Users
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        
         [field:NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\PasswordHashingConverter.cs" />
     <Compile Include="Converters\UserLevelToStringConverter.cs" />
     <Compile Include="Converters\ValueConverter.cs" />
     <Compile Include="Users\KPUser.cs" />
