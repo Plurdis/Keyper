@@ -23,6 +23,12 @@ namespace Keyper
         public MainWindow()
         {
             InitializeComponent();
+            spDrag.MouseDown += SpDrag_MouseDown;
+        }
+
+        private void SpDrag_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

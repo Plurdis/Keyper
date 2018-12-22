@@ -8,13 +8,16 @@
     Title="MainWindow"
     Width="800"
     Height="450"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <StackPanel x:Name="spDrag" Background="#FFF0F0F0">
             <TextBlock
                 Margin="0,50,0,0"
                 VerticalAlignment="Top"
@@ -39,15 +42,132 @@
                 TextAlignment="Center" />
         </StackPanel>
 
+        <TextBlock
+            Margin="0,0,0,15"
+            VerticalAlignment="Bottom"
+            FontFamily="NanumSquare"
+            FontSize="13"
+            Text="© 2019 Plurdis, All rights reserved."
+            TextAlignment="Center" />
+
         <Grid Grid.Column="1">
-            <ListBox Margin="10" BorderBrush="{x:Null}">
+            <ListBox Margin="20,40" BorderBrush="{x:Null}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <EventTrigger RoutedEvent="Grid.MouseLeave">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        FillBehavior="Stop"
+                                                        Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                                        To="Transparent"
+                                                        Duration="0:0:0.5" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="Grid.MouseEnter">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        FillBehavior="HoldEnd"
+                                                        Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                                        To="LightGray"
+                                                        Duration="0:0:0.5" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
                 <ListBoxItem>
-                    <Grid>
+                    <Grid Margin="10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Image />
+                        <Ellipse Fill="#FF5D5D5D" />
+                        <Image Width="60" Source="Resources/Images/UserImage.png" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="20,0"
+                            VerticalAlignment="Center"
+                            FontFamily="NanumSquare"
+                            FontSize="20"
+                            Text="Admin" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="20,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontFamily="NanumSquare"
+                            FontSize="15"
+                            Text="최고 관리자" />
+                    </Grid>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Ellipse Fill="#FF5D5D5D" />
+                        <Image Width="60" Source="Resources/Images/UserImage.png" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="20,0"
+                            VerticalAlignment="Center"
+                            FontFamily="NanumSquare"
+                            FontSize="20"
+                            Text="선생님" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="20,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontFamily="NanumSquare"
+                            FontSize="15"
+                            Text="일반 관리자" />
+                    </Grid>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Ellipse Fill="#FF5D5D5D" />
+                        <Image Width="60" Source="Resources/Images/UserImage.png" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="20,0"
+                            VerticalAlignment="Center"
+                            FontFamily="NanumSquare"
+                            FontSize="20"
+                            Text="학생" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="20,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontFamily="NanumSquare"
+                            FontSize="15"
+                            Text="일반 계정" />
                     </Grid>
                 </ListBoxItem>
             </ListBox>
