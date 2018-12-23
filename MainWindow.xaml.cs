@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Keyper
@@ -23,12 +22,6 @@ namespace Keyper
         public MainWindow()
         {
             InitializeComponent();
-            spDrag.MouseDown += SpDrag_MouseDown;
-        }
-
-        private void SpDrag_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
         }
     }
 }
