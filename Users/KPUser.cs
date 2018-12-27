@@ -19,49 +19,49 @@ namespace Keyper.Users
     [Serializable]
     public class KPUser : INotifyPropertyChanged
     {
-        [NonSerialized]
-        ImageSource _image;
+        //[NonSerialized]
+        //ImageSource _image;
 
-        byte[] encodedImage;
+        //byte[] encodedImage;
 
-        public ImageSource Image
-        {
-            get => _image;
-            set
-            {
-                _image = value;
-                ChangedEventCall("Image");
-            }
-        }
+        //public ImageSource Image
+        //{
+        //    get => _image;
+        //    set
+        //    {
+        //        _image = value;
+        //        ChangedEventCall("Image");
+        //    }
+        //}
         
-        #region [  Serialize Image Conversion  ]
+        //#region [  Serialize Image Conversion  ]
 
-        [OnSerializing]
-        void StreamImage(StreamingContext sc)
-        {
-            if (_image != null && _image is BitmapImage src)
-            {
-                MemoryStream stream = new MemoryStream();
-                BmpBitmapEncoder encoder = new BmpBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(src.UriSource));
-                encoder.Save(stream);
-                stream.Flush();
-                encodedImage = stream.ToArray();
-            }
-        }
+        //[OnSerializing]
+        //void StreamImage(StreamingContext sc)
+        //{
+        //    if (_image != null && _image is BitmapImage src)
+        //    {
+        //        MemoryStream stream = new MemoryStream();
+        //        BmpBitmapEncoder encoder = new BmpBitmapEncoder();
+        //        encoder.Frames.Add(BitmapFrame.Create(src.UriSource));
+        //        encoder.Save(stream);
+        //        stream.Flush();
+        //        encodedImage = stream.ToArray();
+        //    }
+        //}
 
-        [OnDeserialized]
-        void LoadImage(StreamingContext sc)
-        {
-            if (encodedImage != null)
-            {
-                MemoryStream stream = new MemoryStream(encodedImage);
-                BmpBitmapDecoder decoder = new BmpBitmapDecoder(stream, BitmapCreateOptions.None, BitmapCacheOption.Default);
-                _image = decoder.Frames[0];
-            }
-        }
+        //[OnDeserialized]
+        //void LoadImage(StreamingContext sc)
+        //{
+        //    if (encodedImage != null)
+        //    {
+        //        MemoryStream stream = new MemoryStream(encodedImage);
+        //        BmpBitmapDecoder decoder = new BmpBitmapDecoder(stream, BitmapCreateOptions.None, BitmapCacheOption.Default);
+        //        _image = decoder.Frames[0];
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
         string _userName;
         

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Keyper.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,16 @@ namespace Keyper
             gridDrag.MouseDown += MouseDrag;
 
             btnClose.MouseDown += BtnClose_MouseDown;
+
+            lbUsers.MouseDoubleClick += LbUsers_MouseDoubleClick;
+        }
+
+        private void LbUsers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (lbUsers.SelectedItem is KPUser user)
+            {
+                MessageBox.Show(user.UserName);
+            }
         }
 
         private void BtnClose_MouseDown(object sender, MouseButtonEventArgs e)

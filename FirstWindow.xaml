@@ -58,81 +58,87 @@
                 VerticalAlignment="Bottom"
                 FontFamily="NanumSquare"
                 FontSize="13"
-                Text="© 2019 Plurdis, All rights reserved."
+                Text="© 2020 Plurdis, All rights reserved."
                 TextAlignment="Center" />
 
             <Grid Grid.Column="1">
-                <ListBox Margin="20,40,20,60" BorderBrush="{x:Null}">
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListBoxItem}">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                        <Grid Background="{TemplateBinding Background}">
-                                            <ContentPresenter />
-                                        </Grid>
-                                        <ControlTemplate.Triggers>
-                                            <EventTrigger RoutedEvent="Grid.MouseLeave">
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ColorAnimation
-                                                            FillBehavior="Stop"
-                                                            Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
-                                                            To="Transparent"
-                                                            Duration="0:0:0.5" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </EventTrigger>
-                                            <EventTrigger RoutedEvent="Grid.MouseEnter">
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ColorAnimation
-                                                            FillBehavior="HoldEnd"
-                                                            Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
-                                                            To="LightGray"
-                                                            Duration="0:0:0.5" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </EventTrigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ListBox.ItemContainerStyle>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Ellipse Fill="#FF5D5D5D" />
-                                <Image Width="60" Source="Resources/Images/UserImage.png" />
+                <Grid Margin="20,40,20,60">
+                    <ListBox
+                        x:Name="lbUsers"
+                        VerticalAlignment="Top"
+                        BorderBrush="{x:Null}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <Grid Background="{TemplateBinding Background}">
+                                                <ContentPresenter />
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <EventTrigger RoutedEvent="Grid.MouseLeave">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <ColorAnimation
+                                                                FillBehavior="Stop"
+                                                                Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                                                To="Transparent"
+                                                                Duration="0:0:0.5" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                                <EventTrigger RoutedEvent="Grid.MouseEnter">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <ColorAnimation
+                                                                FillBehavior="HoldEnd"
+                                                                Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                                                To="LightGray"
+                                                                Duration="0:0:0.5" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Ellipse Fill="#FF5D5D5D" />
+                                    <Image Width="60" Source="Resources/Images/UserImage.png" />
 
-                                <TextBlock
-                                    Grid.Column="1"
-                                    Margin="20,0"
-                                    VerticalAlignment="Center"
-                                    FontFamily="NanumSquare"
-                                    FontSize="20"
-                                    Text="{Binding UserName}" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="20,0"
+                                        VerticalAlignment="Center"
+                                        FontFamily="NanumSquare"
+                                        FontSize="20"
+                                        Text="{Binding UserName}" />
 
-                                <TextBlock
-                                    Grid.Column="1"
-                                    Margin="20,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    FontFamily="NanumSquare"
-                                    FontSize="15"
-                                    Text="{Binding UserLevel, Converter={cvt:UserLevelToStringConverter}}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <user:KPUser UserLevel="SuperAdministrator" UserName="Admin" />
-                    <user:KPUser UserLevel="Administrator" UserName="선생님" />
-                    <user:KPUser UserLevel="User" UserName="학생" />
-                </ListBox>
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="20,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        FontFamily="NanumSquare"
+                                        FontSize="15"
+                                        Text="{Binding UserLevel, Converter={cvt:UserLevelToStringConverter}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <user:KPUser UserLevel="SuperAdministrator" UserName="Admin" />
+                        <user:KPUser UserLevel="Administrator" UserName="선생님" />
+                        <user:KPUser UserLevel="User" UserName="학생" />
+                    </ListBox>
+                </Grid>
+
             </Grid>
 
 
