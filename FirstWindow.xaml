@@ -58,7 +58,7 @@
                 VerticalAlignment="Bottom"
                 FontFamily="NanumSquare"
                 FontSize="13"
-                Text="© 2020 Plurdis, All rights reserved."
+                Text="© 2019 Plurdis, All rights reserved."
                 TextAlignment="Center" />
 
             <Grid Grid.Column="1">
